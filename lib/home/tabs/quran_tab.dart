@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:islami/colors.dart';
@@ -131,22 +132,13 @@ class QuranTab extends StatelessWidget {
           "assets/images/home_logo.png",
           height: 227,
         ),
-        Divider(
-          thickness: 3,
-          color: AppColors.PrimaryColor,
-        ),
+        Divider(),
         Text(
-          "Sura Names",
+          "sura_name".tr(),
           textAlign: TextAlign.center,
-          style: GoogleFonts.elMessiri(
-            fontSize: 25,
-            fontWeight: FontWeight.w600,
-          ),
+          style: Theme.of(context).textTheme.bodyMedium
         ),
-        Divider(
-          thickness: 3,
-          color: AppColors.PrimaryColor,
-        ),
+        Divider(),
         Expanded(
           child: ListView.separated(
             separatorBuilder: (context, index) => Row(
@@ -155,20 +147,17 @@ class QuranTab extends StatelessWidget {
                 Expanded(
                   child: Icon(
                     Icons.star_border_purple500,
-                    color: AppColors.PrimaryColor,
                   ),
                 ),
                 Expanded(
                   flex: 2,
                   child: Divider(
-                    thickness: 2,
-                    color: AppColors.PrimaryColor,
+                    thickness: 1,
                   ),
                 ),
                 Expanded(
                   child: Icon(
                     Icons.star_border_purple500,
-                    color: AppColors.PrimaryColor,
                   ),
                 ),
               ],
@@ -182,10 +171,7 @@ class QuranTab extends StatelessWidget {
                 child: Text(
                   suraNames[index],
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.elMessiri(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: Theme.of(context).textTheme.bodyMedium
                 ),
               );
             },

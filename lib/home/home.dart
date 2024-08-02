@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:islami/home/tabs/ahadeth_tab.dart';
@@ -5,6 +6,8 @@ import 'package:islami/home/tabs/quran_tab.dart';
 import 'package:islami/home/tabs/radio_tab.dart';
 import 'package:islami/home/tabs/sebha_tab.dart';
 import 'package:islami/home/tabs/settings_tab.dart';
+import 'package:islami/providers/my_provider.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "home";
@@ -18,60 +21,44 @@ class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
+    var pro = Provider.of<MyProvider>(context);
     return Stack(
       children: [
         Positioned.fill(
           child: Image.asset(
-            "assets/images/main_bg.png",
+            pro.appTheme == ThemeMode.dark
+                ? "assets/images/main_dark_bg.png"
+                : "assets/images/main_bg.png",
             fit: BoxFit.cover,
           ),
         ),
         Scaffold(
-          backgroundColor: Colors.transparent,
           appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            centerTitle: true,
             title: Text(
-              "Islami",
-              style: GoogleFonts.elMessiri(
-                fontSize: 30,
-                fontWeight: FontWeight.w700,
-              ),
+              "islami".tr(),
             ),
           ),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: selectedIndex,
             onTap: (index) {
               selectedIndex = index;
-              setState(() {
-
-              });
+              setState(() {});
             },
-            showUnselectedLabels: false,
-            showSelectedLabels: false,
-            type: BottomNavigationBarType.shifting,
-            backgroundColor: Color(0xffB7935f),
-            selectedItemColor: Colors.black,
-            unselectedItemColor: Colors.white,
             items: [
               BottomNavigationBarItem(
-                  backgroundColor: Color(0xffB7935f),
                   icon: ImageIcon(AssetImage("assets/images/moshaf_blue.png")),
-                  label: "moshaf"),
+                  label: "quran".tr()),
               BottomNavigationBarItem(
-                  backgroundColor: Color(0xffB7935f),
                   icon: ImageIcon(AssetImage("assets/images/sebha.png")),
-                  label: "sebha"),
+                  label: "sebha".tr()),
               BottomNavigationBarItem(
-                  backgroundColor: Color(0xffB7935f),
                   icon: ImageIcon(AssetImage("assets/images/radio.png")),
-                  label: "radio"),
+                  label: "radio".tr()),
               BottomNavigationBarItem(
-                  backgroundColor: Color(0xffB7935f),
                   icon: ImageIcon(AssetImage("assets/images/ahadeth.png")),
-                  label: "ahadeth"),
+                  label: "ahadeth".tr()),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.settings), label: "settings"),
+                  icon: Icon(Icons.settings), label: "settings".tr()),
             ],
           ),
           body: tabs[selectedIndex],
@@ -79,7 +66,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
     );
   }
-  List<Widget> tabs=[
+
+  List<Widget> tabs = [
     QuranTab(),
     SebhaTab(),
     RadioTab(),
