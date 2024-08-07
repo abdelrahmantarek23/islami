@@ -11,5 +11,7 @@
   "language" : "Language",
   "english" : "English",
   "arabic" : "Arabic",
-  "settings" : "Settings"
+  "settings" : "Settings",
+  "holy_quran_radio" : "Holy Quran Radio",
+  "number_of_tasbeehs" : "Number of Tasbeehs"
 }

@@ -4,6 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:islami/colors.dart';
 import 'package:islami/sura_details_screen.dart';
 import 'package:islami/sura_model.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/my_provider.dart';
 
 class QuranTab extends StatelessWidget {
   QuranTab({super.key});
@@ -125,6 +128,8 @@ class QuranTab extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
+    var pro = Provider.of<MyProvider>(context);
+    final isDarkMode = pro.appTheme == ThemeMode.dark;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -133,11 +138,9 @@ class QuranTab extends StatelessWidget {
           height: 227,
         ),
         Divider(),
-        Text(
-          "sura_name".tr(),
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodyMedium
-        ),
+        Text("sura_name".tr(),
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyMedium),
         Divider(),
         Expanded(
           child: ListView.separated(
@@ -171,7 +174,9 @@ class QuranTab extends StatelessWidget {
                 child: Text(
                   suraNames[index],
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: isDarkMode ? Colors.white : Colors.black,
+                      ),
                 ),
               );
             },

@@ -4,8 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:islami/hadeth_details_screen.dart';
 import 'package:islami/hadeth_model.dart';
+import 'package:provider/provider.dart';
 
 import '../../colors.dart';
+import '../../providers/my_provider.dart';
 
 class AhadethTab extends StatefulWidget {
   AhadethTab({super.key});
@@ -18,13 +20,14 @@ class _AhadethTabState extends State<AhadethTab> {
   List<HadethModel> allAhadeth = [];
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     loadHadethFile();
   }
 
   @override
   Widget build(BuildContext context) {
+    var pro = Provider.of<MyProvider>(context);
+    final isDarkMode = pro.appTheme == ThemeMode.dark;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -55,7 +58,9 @@ class _AhadethTabState extends State<AhadethTab> {
                 child: Text(
                   allAhadeth[index].title,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodySmall
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: isDarkMode ? Colors.white : Colors.black,
+                  )
                 ),
               );
             },

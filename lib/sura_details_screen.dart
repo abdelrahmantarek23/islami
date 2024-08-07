@@ -14,6 +14,7 @@ class SuraDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var model = ModalRoute.of(context)?.settings.arguments as SuraModel;
     var pro = Provider.of<MyProvider>(context);
+    final isDarkMode = pro.appTheme == ThemeMode.dark;
     return ChangeNotifierProvider(
       create: (context) => SuraDetailsProvider()..loadSuraFile(model.index),
       builder: (context, child) {
@@ -32,12 +33,15 @@ class SuraDetailsScreen extends StatelessWidget {
               appBar: AppBar(
                 title: Text(
                   model.name,
+                  style: TextStyle(
+                      color: isDarkMode ? Color(0xFFFACC1D) : Colors.black),
                 ),
               ),
               body: Container(
                 padding: const EdgeInsets.all(8.0),
                 margin: EdgeInsets.all(12),
                 child: Card(
+                  color: isDarkMode ? Color(0xFF141A2E) : Colors.white,
                   shape: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(14),
                   ),
@@ -47,7 +51,9 @@ class SuraDetailsScreen extends StatelessWidget {
                       return Text(
                         provider.verses[index],
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: isDarkMode ? Color(0xFFFACC1D) : Colors.black,
+                        )
                       );
                     },
                     itemCount: provider.verses.length,

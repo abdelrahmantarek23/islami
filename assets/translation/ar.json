@@ -11,5 +11,7 @@
   "language" : "اللغة",
   "english" : "الإنجليزية",
   "arabic" : "العربية",
-  "settings" : "الإعدادات"
+  "settings" : "الإعدادات",
+  "holy_quran_radio" : "إذاعة القرأن الكريم",
+  "number_of_tasbeehs" : "عدد التسبيحات"
 }

@@ -32,7 +32,9 @@ class SettingsTab extends StatelessWidget {
                 //isDismissible: false,
                 isScrollControlled: true,
                 builder: (context) {
-                  return ThemeBottomSheet();
+                  return ThemeBottomSheet(
+
+                  );
                 },
               );
             },

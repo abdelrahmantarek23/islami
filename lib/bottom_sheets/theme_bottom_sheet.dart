@@ -27,8 +27,8 @@ class ThemeBottomSheet extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           InkWell(
-            onTap: () {
-              provider.changeTheme(ThemeMode.light);
+            onTap: () async {
+             await provider.changeTheme(ThemeMode.light);
               Navigator.pop(context);
             },
             child: Row(
@@ -52,8 +52,8 @@ class ThemeBottomSheet extends StatelessWidget {
             height: 24,
           ),
           InkWell(
-            onTap: () {
-              provider.changeTheme(ThemeMode.dark);
+            onTap: () async {
+              await provider.changeTheme(ThemeMode.dark);
               Navigator.pop(context);
             },
             child: Row(
